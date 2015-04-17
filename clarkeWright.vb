@@ -103,10 +103,12 @@ Public Class clarkeWright
                     For k = 0 To currentPath.routes.Item(j).links.Count - 1
                         ' (a,b) ->(a,c) to (b,a) -> (a,c)
                         If currentPath.routes.Item(j).links.Item(k).node1 = savList.Item(i).nod1 Then
-                            ' reverse the current link in route
-                            Dim t As Integer = currentPath.routes.Item(j).links.Item(k).node1
-                            currentPath.routes.Item(j).links.Item(k).node1 = currentPath.routes.Item(j).links.Item(k).node2
-                            currentPath.routes.Item(j).links.Item(k).node2 = t
+                            ' reverse all preceeding links
+                            For z = 0 To k
+                                Dim t As Integer = currentPath.routes.Item(j).links.Item(z).node1
+                                currentPath.routes.Item(j).links.Item(z).node1 = currentPath.routes.Item(j).links.Item(z).node2
+                                currentPath.routes.Item(j).links.Item(z).node2 = t
+                            Next
 
                             ' Create a new link
                             Dim l As link = New link
@@ -160,10 +162,12 @@ Public Class clarkeWright
 
                             ' (b,a) -> (c,b) to (a,b) -> (b,c)
                         ElseIf currentPath.routes.Item(j).links.Item(k).node1 = savList.Item(i).nod2 Then
-                            ' reverse the current link in route
-                            Dim t As Integer = currentPath.routes.Item(j).links.Item(k).node1
-                            currentPath.routes.Item(j).links.Item(k).node1 = currentPath.routes.Item(j).links.Item(k).node2
-                            currentPath.routes.Item(j).links.Item(k).node2 = t
+                            ' reverse all preceeding links
+                            For z = 0 To k
+                                Dim t As Integer = currentPath.routes.Item(j).links.Item(z).node1
+                                currentPath.routes.Item(j).links.Item(z).node1 = currentPath.routes.Item(j).links.Item(z).node2
+                                currentPath.routes.Item(j).links.Item(z).node2 = t
+                            Next
 
                             ' Create a new link
                             Dim l As link = New link
