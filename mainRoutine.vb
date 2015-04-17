@@ -28,21 +28,23 @@
         nodeCount = Console.ReadLine
 
         ' Generate X random Nodes between +-10000 x and y
-        Console.WriteLine()
-        Console.WriteLine("--------------------------------")
-        Console.WriteLine("Node List")
-        Console.WriteLine("--------------------------------")
         nodeSet = New List(Of nodeElement)
         nodeSet = nodes.generate(nodeCount)
 
         ' Select Hub Node randomly from set
-        Console.WriteLine()
-        Console.WriteLine("--------------------------------")
-        Console.WriteLine("Hub Node")
-        Console.WriteLine("--------------------------------")
+        
         hub = New nodeElement
         hub = nodes.selectHub(nodeSet)
+
+        ' Print the node set to console
+        Console.WriteLine()
+        Console.WriteLine("--------------------------------")
+        Console.WriteLine("Node List")
+        Console.WriteLine("--------------------------------")
         Console.WriteLine("Hub: " & hub.x & ", " & hub.y)
+        For i = 0 To nodeCount - 1
+            Console.WriteLine("Node(" & i & "): " & nodeSet.Item(i).x & ", " & nodeSet.Item(i).y)
+        Next
 
         ' Generate savings pairs
         Console.WriteLine()
