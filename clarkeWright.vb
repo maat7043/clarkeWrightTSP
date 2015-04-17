@@ -143,34 +143,35 @@ Public Class clarkeWright
                 For j = 0 To currentPath.routes.Count - 1
                     ' loop through links in route
                     For k = 0 To currentPath.routes.Item(j).links.Count - 1
-                        ' (a,b) -> (c,b) to (c,b) -> (b,a)
+                        ' (a,b) -> (c,b) to (a,b) -> (b,c)
                         If currentPath.routes.Item(j).links.Item(k).node2 = savList.Item(i).nod2 Then
-                            ' flip the current link
+
+                            ' Create a new link
+                            Dim l As link = New link
+                            l.node1 = savList.Item(i).nod2 ' note the new link is reversed
+                            l.node2 = savList.Item(i).nod1
+
+                            ' add the new link to the current route
+                            currentPath.routes.Item(j).links.Add(l)
+
+                            ' Update the node uses
+                            nodeSet.Item(savList.Item(i).nod1).uses += 1
+                            nodeSet.Item(savList.Item(i).nod2).uses += 1
+
+                            ' (b,a) -> (c,b) to (a,b) -> (b,c)
+                        ElseIf currentPath.routes.Item(j).links.Item(k).node1 = savList.Item(i).nod2 Then
+                            ' reverse the current link in route
                             Dim t As Integer = currentPath.routes.Item(j).links.Item(k).node1
                             currentPath.routes.Item(j).links.Item(k).node1 = currentPath.routes.Item(j).links.Item(k).node2
                             currentPath.routes.Item(j).links.Item(k).node2 = t
 
                             ' Create a new link
                             Dim l As link = New link
-                            l.node1 = savList.Item(i).nod1
-                            l.node2 = savList.Item(i).nod2
-
-                            ' insert the new link to the current route before the current link
-                            currentPath.routes.Item(j).links.Insert(k, l)
-
-                            ' Update the node uses
-                            nodeSet.Item(savList.Item(i).nod1).uses += 1
-                            nodeSet.Item(savList.Item(i).nod2).uses += 1
-
-                            ' (b,a) -> (c,b) to (c,b) -> (b,a)
-                        ElseIf currentPath.routes.Item(j).links.Item(k).node1 = savList.Item(i).nod2 Then
-                            ' Create a new link
-                            Dim l As link = New link
-                            l.node1 = savList.Item(i).nod1
-                            l.node2 = savList.Item(i).nod2
+                            l.node1 = savList.Item(i).nod2 ' note the new link is reversed
+                            l.node2 = savList.Item(i).nod1
 
                             ' add the new link to the current route
-                            currentPath.routes.Item(j).links.Insert(k, l)
+                            currentPath.routes.Item(j).links.Add(l)
 
                             ' Update the node uses
                             nodeSet.Item(savList.Item(i).nod1).uses += 1

@@ -7,7 +7,6 @@
             n.x = rnd.Next(-10000, 10000)
             n.y = rnd.Next(-10000, 10000)
             nodeSet.Add(n)
-            Console.WriteLine("Node(" & i & "): " & n.x & ", " & n.y)
         Next
         Return nodeSet
     End Function
