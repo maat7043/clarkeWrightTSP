@@ -90,7 +90,6 @@ Public Class clarkeWright
 
                 ' Add the route to the path
                 currentPath.routes.Add(r)
-                Console.WriteLine("case 1")
 
                 ' Update the node uses
                 nodeSet.Item(savList.Item(i).nod1).uses += 1
@@ -116,7 +115,6 @@ Public Class clarkeWright
 
                             ' add the new link to the current route
                             currentPath.routes.Item(j).links.Add(l)
-                            Console.WriteLine("case 2a1")
 
                             ' Update the node uses
                             nodeSet.Item(savList.Item(i).nod1).uses += 1
@@ -131,7 +129,6 @@ Public Class clarkeWright
 
                             ' add the new link to the current route
                             currentPath.routes.Item(j).links.Add(l)
-                            Console.WriteLine("case 2a2")
 
                             ' Update the node uses
                             nodeSet.Item(savList.Item(i).nod1).uses += 1
@@ -160,7 +157,6 @@ Public Class clarkeWright
 
                             ' insert the new link to the current route before the current link
                             currentPath.routes.Item(j).links.Insert(k, l)
-                            Console.WriteLine("case 2b1")
 
                             ' Update the node uses
                             nodeSet.Item(savList.Item(i).nod1).uses += 1
@@ -175,7 +171,6 @@ Public Class clarkeWright
 
                             ' add the new link to the current route
                             currentPath.routes.Item(j).links.Insert(k, l)
-                            Console.WriteLine("case 2b2")
 
                             ' Update the node uses
                             nodeSet.Item(savList.Item(i).nod1).uses += 1
